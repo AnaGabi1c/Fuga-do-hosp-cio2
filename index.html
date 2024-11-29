@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuga do Hospício</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+        p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+        .choices {
+            margin-top: 20px;
+        }
+        .choice-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-right: 10px;
+        }
+        .choice-button:hover {
+            background-color: #218838;
+        }
+        .choice-button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Fuga do Hospício</h1>
+    <p id="story">Você acorda em um lugar sombrio, as paredes são feitas de concreto e o cheiro de desinfetante é forte no ar. Você está preso em um hospício. Não sabe como chegou lá, mas sabe que precisa escapar. As grades nas janelas são fortes, e os guardas estão sempre de olho em você. A única coisa que pode salvar sua sanidade é encontrar uma maneira de fugir. De repente, você escuta passos. É agora ou nunca!</p>
+    
+    <div class="choices">
+        <button class="choice-button" onclick="choosePath('left')">Ir para a esquerda, onde você escuta vozes.</button>
+        <button class="choice-button" onclick="choosePath('right')">Ir para a direita, onde há uma porta trancada.</button>
+    </div>
+</div>
+
+<script>
+    function choosePath(path) {
+        const storyElement = document.getElementById("story");
+        const choicesElement = document.querySelector(".choices");
+        
+        if (path === 'left') {
+            storyElement.innerHTML = `
+                <p>Você decide seguir para a esquerda, onde as vozes parecem ficar mais fortes. Ao virar o corredor, você se depara com dois homens sentados em uma mesa, jogando cartas. Eles te olham, mas não falam nada. Um deles parece distraído, enquanto o outro está focado na partida. Você pode tentar conversar com eles ou continuar seguindo o corredor.</p>
+                <div class="choices">
+                    <button class="choice-button" onclick="choosePath('talk')">Tentar conversar com os homens.</button>
+                    <button class="choice-button" onclick="choosePath('continue')">Continuar seguindo pelo corredor.</button>
+                </div>
+            `;
+        } else if (path === 'right') {
+            storyElement.innerHTML = `
+                <p>Você se aproxima da porta trancada à direita. Tentando observar melhor, você percebe que a chave está na mesa do guarda que passa regularmente. Você precisa decidir rapidamente o que fazer: tentar pegar a chave furtivamente ou esperar uma oportunidade melhor.</p>
+                <div class="choices">
+                    <button class="choice-button" onclick="choosePath('steal')">Tentar pegar a chave furtivamente.</button>
+                    <button class="choice-button" onclick="choosePath('wait')">Esperar por uma oportunidade melhor.</button>
+                </div>
+            `;
+        } else if (path === 'talk') {
+            storyElement.innerHTML = `
+                <p>Você se aproxima dos homens e começa uma conversa casual. Eles parecem amigáveis, mas logo você percebe que um deles tem um olhar estranho. Ele te diz para sair, mas você consegue perceber que ele está escondendo algo. Você decide tentar pegar a chave do bolso do homem distraído enquanto ele não te vê.</p>
+                <div class="choices">
+                    <button class="choice-button" onclick="choosePath('steal')">Tentar pegar a chave do homem distraído.</button>
+                    <button class="choice-button" onclick="choosePath('escape')">Correr para a saída mais próxima.</button>
+                </div>
+            `;
+        } else if (path === 'continue') {
+            storyElement.innerHTML = `
+                <p>Você decide seguir pelo corredor e logo encontra uma porta escondida. Ela parece ser uma saída secreta. Ao abrir, você encontra uma escada que desce para o nível subterrâneo. É sua chance de fugir, mas você pode se deparar com mais obstáculos por ali.</p>
+                <div class="choices">
+                    <button class="choice-button" onclick="choosePath('stairs')">Descer pela escada.</button>
+                    <button class="choice-button" onclick="choosePath('hide')">Esconder-se em um dos cômodos próximos.</button>
+                </div>
+            `;
+        } else if (path === 'steal') {
+            storyElement.innerHTML = `
+                <p>Você se aproxima sorrateiramente e pega a chave do guarda sem ser visto. Com a chave em mãos, você corre até a porta trancada e a abre rapidamente. Do outro lado, há um corredor escuro, mas você consegue ouvir o som de passos se aproximando. Você tem que decidir se vai seguir ou voltar para a segurança do hospício.</p>
+                <div class="choices">
+                    <button class="choice-button" onclick="choosePath('run')">Seguir pelo corredor escuro.</button>
+                    <button class="choice-button" onclick="choosePath('hide')">Voltar para o hospício e esperar.</button>
+                </div>
+            `;
+        } else if (path === 'wait') {
+            storyElement.innerHTML = `
+                <p>Você decide esperar por uma oportunidade melhor. Após algum tempo, o guarda sai da sala, e você aproveita para pegar a chave. Ao abrir a porta trancada, você encontra um longo corredor. O problema é que você sabe que o tempo está contra você, e logo alguém pode te encontrar.</p>
+                <div class="choices">
+                    <button class="choice-button" onclick="choosePath('run')">Seguir pelo corredor escuro.</button>
+                    <button class="choice-button" onclick="choosePath('hide')">Esconder-se em uma sala secreta.</button>
+                </div>
+            `;
+        } else if (path === 'escape') {
+            storyElement.innerHTML = `
+                <p>Ao tentar escapar pela porta mais próxima, você é pego pelos guardas. Apesar de sua tentativa, você acaba sendo capturado e levado de volta para o hospício. A fuga não foi bem-sucedida, mas talvez uma próxima tentativa seja melhor.</p>
+                <div class="choices">
+                    <button class="choice-button" onclick="restartGame()">Tentar novamente.</button>
+                </div>
+            `;
+        } else if (path === 'stairs') {
+            storyElement.innerHTML = `
+                <p>Você desce as escadas e chega a um longo túnel subterrâneo. O ar está pesado e úmido, mas você não tem outra opção senão seguir em frente. Depois de um tempo, você encontra uma porta de ferro enferrujada. Do outro lado, parece estar a liberdade.</p>
+                <div class="choices">
+                    <button class="choice-button" onclick="restartGame()">Sair para a liberdade!</button>
+                </div>
+            `;
+        } else if (path === 'hide') {
+            storyElement.innerHTML = `
+                <p>Você decide se esconder em uma sala secreta. Dentro, encontra outros prisioneiros e começa a planejar uma nova fuga. Com a ajuda deles, você consegue encontrar uma maneira de sair sem ser detectado. Após dias de planejamento, você finalmente consegue escapar para a liberdade!</p>
+                <div class="choices">
+                    <button class="choice-button" onclick="restartGame()">Fugir com sucesso!</button>
+                </div>
+            `;
+        } else if (path === 'run') {
+            storyElement.innerHTML = `
+                <p>Você corre pelo corredor escuro e, após um tempo de fuga, encontra uma janela quebrada. Você se esgueira por ela e finalmente sente o ar fresco da noite. Você conseguiu escapar!</p>
+                <div class="choices">
+                    <button class="choice-button" onclick="restartGame()">Aventura concluída. Fugiu com sucesso!</button>
+                </div>
+            `;
+        }
+    }
+
+    function restartGame() {
+        window.location.reload();
+    }
+</script>
+
+</body>
+</html>
